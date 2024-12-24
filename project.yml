@@ -20,8 +20,8 @@ targets:
         INFOPLIST_FILE: Altimeter/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.example.altimeter
         PRODUCT_NAME: Altimeter
-        TARGETED_DEVICE_FAMILY: 1 # 1 = iPhone, 2 = iPad
-        DEVELOPMENT_TEAM: "" # 你需要填写你的开发者团队ID
+        TARGETED_DEVICE_FAMILY: "1,2" # 1 = iPhone, 2 = iPad
+        DEVELOPMENT_TEAM: "7A4VRCU75Q" # 你需要填写你的开发者团队ID
         CODE_SIGN_STYLE: Automatic
         SWIFT_VERSION: 5.0
         ENABLE_PREVIEWS: YES

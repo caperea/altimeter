@@ -3,19 +3,39 @@ options:
   bundleIdPrefix: com.example
   deploymentTarget:
     iOS: 15.0
+  xcodeVersion: "14.0"
+  generateEmptyDirectories: true
+  createIntermediateGroups: true
 
 targets:
   Altimeter:
     type: application
     platform: iOS
     sources:
-      - Altimeter
+      - path: Altimeter
+        excludes:
+          - "*.md"
     settings:
       base:
         INFOPLIST_FILE: Altimeter/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.example.altimeter
+        PRODUCT_NAME: Altimeter
+        TARGETED_DEVICE_FAMILY: 1 # 1 = iPhone, 2 = iPad
+        DEVELOPMENT_TEAM: "" # 你需要填写你的开发者团队ID
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: 5.0
+        ENABLE_PREVIEWS: YES
     info:
       path: Altimeter/Info.plist
       properties:
+        CFBundleName: Altimeter
+        CFBundleDisplayName: Altimeter
+        CFBundlePackageType: APPL
+        CFBundleShortVersionString: 1.0.0
+        CFBundleVersion: 1
+        LSRequiresIPhoneOS: true
+        UIRequiredDeviceCapabilities: [armv7]
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
         NSLocationWhenInUseUsageDescription: "需要使用GPS来获取海拔高度"
         NSLocationAlwaysAndWhenInUseUsageDescription: "需要使用GPS来获取海拔高度"

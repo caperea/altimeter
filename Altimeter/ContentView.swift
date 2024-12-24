@@ -25,9 +25,7 @@ class AltimeterManager: NSObject, ObservableObject {
                 guard let data = data, error == nil else { return }
                 self?.barometerAltitude = data.relativeAltitude.doubleValue
                 // 更新参考气压
-                if let pressure = data.pressure {
-                    self?.referencePressure = pressure.doubleValue / 10 // 转换为百帕
-                }
+                self?.referencePressure = data.pressure.doubleValue / 10 // 转换为百帕
             }
         }
         

@@ -20,22 +20,27 @@ targets:
         INFOPLIST_FILE: Altimeter/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.example.altimeter
         PRODUCT_NAME: Altimeter
-        TARGETED_DEVICE_FAMILY: "1,2" # 1 = iPhone, 2 = iPad
-        DEVELOPMENT_TEAM: "7A4VRCU75Q" # 你需要填写你的开发者团队ID
+        TARGETED_DEVICE_FAMILY: "1,2"
+        DEVELOPMENT_TEAM: "7A4VRCU75Q"
         CODE_SIGN_STYLE: Automatic
         SWIFT_VERSION: 5.0
         ENABLE_PREVIEWS: YES
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0.0
     info:
       path: Altimeter/Info.plist
       properties:
         CFBundleName: Altimeter
         CFBundleDisplayName: Altimeter
         CFBundlePackageType: APPL
-        CFBundleShortVersionString: 1.0.0
-        CFBundleVersion: 1
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
         LSRequiresIPhoneOS: true
-        UIRequiredDeviceCapabilities: [armv7]
+        UIRequiredDeviceCapabilities: 
+          - armv7
+          - location-services
+        NSLocationWhenInUseUsageDescription: "We need GPS access to measure altitude"
+        NSLocationAlwaysAndWhenInUseUsageDescription: "We need GPS access to measure altitude"
+        NSMotionUsageDescription: "We need access to the altimeter to measure altitude changes"
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
-        NSLocationWhenInUseUsageDescription: "需要使用GPS来获取海拔高度"
-        NSLocationAlwaysAndWhenInUseUsageDescription: "需要使用GPS来获取海拔高度"

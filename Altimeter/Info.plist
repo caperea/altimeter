@@ -19,16 +19,19 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<integer>1</integer>
+	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>需要使用GPS来获取海拔高度</string>
+	<string>We need GPS access to measure altitude</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>需要使用GPS来获取海拔高度</string>
+	<string>We need GPS access to measure altitude</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We need access to the altimeter to measure altitude changes</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>location-services</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -3,7 +3,6 @@ import CoreLocation
 
 class GPSAltimeter: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
-    private var referenceAltitude: Double = 0
     
     @Published var altitude: Double = 0
     @Published var accuracy: Double = 0
@@ -17,7 +16,7 @@ class GPSAltimeter: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 1.0 // 1米更新一次
+        locationManager.distanceFilter = 0.1 // 0.1米更新一次
     }
     
     func requestAuthorization() {
@@ -37,44 +36,30 @@ class GPSAltimeter: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
-        // 设置初始参考高度
-        if referenceAltitude == 0 {
-            referenceAltitude = location.altitude
-        }
-        
-        // 更新相对高度
-        altitude = location.altitude - referenceAltitude
+        // 直接使用海拔高度
+        altitude = location.altitude
         
         // 更新精度
         accuracy = location.verticalAccuracy
         
         // 更新信号强度（基于水平精度）
-        updateSignalStrength(horizontalAccuracy: location.horizontalAccuracy)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("GPS error: \(error.localizedDescription)")
-        signalStrength = 0
-    }
-    
-    private func updateSignalStrength(horizontalAccuracy: Double) {
-        // 基于水平精度估算信号强度
+        let horizontalAccuracy = location.horizontalAccuracy
         switch horizontalAccuracy {
         case ...5: // 非常精确
             signalStrength = 4
-        case 5...10:
+        case 5..<10:
             signalStrength = 3
-        case 10...30:
+        case 10..<15:
             signalStrength = 2
-        case 30...100:
+        case 15..<20:
             signalStrength = 1
         default:
             signalStrength = 0
         }
     }
     
-    // 重置参考高度
-    func resetReferenceAltitude() {
-        referenceAltitude = 0
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location error: \(error)")
+        signalStrength = 0
     }
 }

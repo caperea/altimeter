@@ -4,8 +4,13 @@ struct GPSAltimeterView: View {
     let altitude: Double
     
     private var altitudeAngle: Double {
-        // 每圈代表100米
-        (altitude.truncatingRemainder(dividingBy: 100) / 100) * 360
+        // 每10米一圈
+        (altitude.truncatingRemainder(dividingBy: 10) / 10) * 360
+    }
+    
+    private var displayAltitude: Double {
+        // 确保高度为正数
+        max(altitude, 0)
     }
     
     var body: some View {
@@ -18,7 +23,7 @@ struct GPSAltimeterView: View {
                         .stroke(Color.white.opacity(0.3), lineWidth: 2)
                 )
             
-            // 刻度
+            // 刻度（每1米一个刻度，每5米一个大刻度）
             ForEach(0..<50) { i in
                 Rectangle()
                     .fill(Color.white)
@@ -28,9 +33,9 @@ struct GPSAltimeterView: View {
                     .rotationEffect(.degrees(Double(i) * 7.2))
             }
             
-            // 数字（每20米一个标记）
+            // 数字（每2米一个标记）
             ForEach(0..<5) { i in
-                Text("\(i * 20)")
+                Text("\(i * 2)")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .offset(y: -50)
@@ -47,10 +52,15 @@ struct GPSAltimeterView: View {
                 .frame(width: 12, height: 12)
             
             // 数字显示
-            Text(String(format: "%.1f m", altitude))
-                .font(.system(.body, design: .rounded))
-                .foregroundColor(.white)
-                .offset(y: 30)
+            VStack {
+                Text(String(format: "%.1f", displayAltitude))
+                    .font(.system(.title2, design: .rounded))
+                    .foregroundColor(.white)
+                Text("米")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(.gray)
+            }
+            .offset(y: 30)
         }
         .frame(width: 180, height: 180)
     }

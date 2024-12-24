@@ -1,0 +1,21 @@
+name: Altimeter
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: 15.0
+
+targets:
+  Altimeter:
+    type: application
+    platform: iOS
+    sources:
+      - Altimeter
+    settings:
+      base:
+        INFOPLIST_FILE: Altimeter/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.altimeter
+    info:
+      path: Altimeter/Info.plist
+      properties:
+        NSLocationWhenInUseUsageDescription: "需要使用GPS来获取海拔高度"
+        NSLocationAlwaysAndWhenInUseUsageDescription: "需要使用GPS来获取海拔高度"

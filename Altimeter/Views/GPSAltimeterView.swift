@@ -38,7 +38,7 @@ struct GPSAltimeterView: View {
             }
             
             // GPS指针
-            Pointer(color: .blue)
+            GPSPointer(color: .blue)
                 .rotationEffect(.degrees(altitudeAngle))
             
             // 中心点
@@ -56,7 +56,7 @@ struct GPSAltimeterView: View {
     }
 }
 
-struct Pointer: View {
+struct GPSPointer: View {
     let color: Color
     
     var body: some View {

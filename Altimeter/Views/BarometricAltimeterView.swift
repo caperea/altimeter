@@ -50,15 +50,15 @@ struct BarometricAltimeterView: View {
             }
             
             // 10000英尺指针（短）
-            Pointer(length: 30, width: 4, color: .white)
+            BarometricPointer(length: 30, width: 4, color: .white)
                 .rotationEffect(.degrees(tenThousandsPointerAngle))
             
             // 1000英尺指针（中）
-            Pointer(length: 45, width: 3, color: .white)
+            BarometricPointer(length: 45, width: 3, color: .white)
                 .rotationEffect(.degrees(thousandsPointerAngle))
             
             // 100英尺指针（长）
-            Pointer(length: 60, width: 2, color: .red)
+            BarometricPointer(length: 60, width: 2, color: .red)
                 .rotationEffect(.degrees(hundredsPointerAngle))
             
             // 中心点
@@ -74,7 +74,7 @@ struct BarometricAltimeterView: View {
     }
 }
 
-struct Pointer: View {
+struct BarometricPointer: View {
     let length: CGFloat
     let width: CGFloat
     let color: Color

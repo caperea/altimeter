@@ -1,10 +1,7 @@
 import SwiftUI
 import CoreLocation
-#if os(iOS)
 import CoreMotion
-#endif
 
-@available(macOS 10.15, *)
 struct ContentView: View {
     @StateObject private var barometricAltimeter = BarometricAltimeter()
     @StateObject private var gpsAltimeter = GPSAltimeter()
